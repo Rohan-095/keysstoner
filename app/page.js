@@ -967,6 +967,14 @@ export default function HomePage() {
           .whatsapp-label {
             display: none !important;
           }
+          #hero {
+            min-height: auto !important;
+            padding-bottom: 0 !important;
+          }
+          .hero-stats-wrap {
+            position: static !important;
+            margin-top: 1.25rem;
+          }
         }
       `}</style>
 
@@ -1165,7 +1173,8 @@ export default function HomePage() {
           overflow: "hidden",
           minHeight: "92vh",
           display: "flex",
-          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}
       >
@@ -1184,7 +1193,7 @@ export default function HomePage() {
           style={{
             maxWidth: 1280,
             margin: "0 auto",
-            padding: "4.5rem 1rem 6.5rem",
+            padding: "4.5rem 1rem 2rem",
             display: "grid",
             gridTemplateColumns: "1.08fr 0.92fr",
             gap: "3rem",
@@ -1478,6 +1487,7 @@ export default function HomePage() {
         </div>
 
         <div
+          className="hero-stats-wrap"
           style={{
             position: "absolute",
             bottom: 0,

@@ -1118,48 +1118,78 @@ export default function HomePage() {
   .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
   .svc-grid{grid-template-columns:repeat(2,1fr) !important;}
 
-  /* buttons smaller on mobile */
   .cta-row{flex-direction:column !important;}
-  .cta-row>*{
-    width:auto !important;
-    min-width:0 !important;
-    justify-content:center !important;
-  }
+  .cta-row>*{width:100% !important;justify-content:center !important;}
 
+  /* mobile hero layout */
   .hero-ctas{
-    flex-direction:row !important;
-    flex-wrap:wrap !important;
-    gap:0.65rem !important;
-    margin-bottom:1.35rem !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:0.55rem !important;
+    margin-bottom:1rem !important;
+    max-width:220px !important;
   }
 
   .hero-ctas>*{
-    width:auto !important;
-    min-width:0 !important;
-    flex:0 1 auto !important;
+    width:220px !important;
+    max-width:220px !important;
+    min-width:220px !important;
     justify-content:center !important;
-    padding:0.82rem 1rem !important;
-    font-size:0.88rem !important;
-    border-radius:0.75rem !important;
+    padding:0.68rem 0.9rem !important;
+    font-size:0.82rem !important;
+    border-radius:0.72rem !important;
   }
 
+  /* proof line under buttons, left side only */
+  .hero-proof{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:0.5rem 0.9rem !important;
+    max-width:220px !important;
+    margin-top:0.2rem !important;
+  }
+
+  .hero-proof > *{
+    font-size:0.76rem !important;
+    line-height:1.2 !important;
+  }
+
+  /* blue badges stay right side, but smaller */
   .hero-badges{
-    right:0.9rem !important;
     top:auto !important;
-    bottom:105px !important;
+    bottom:120px !important;
+    right:0.7rem !important;
+    left:auto !important;
     transform:none !important;
-    gap:0.55rem !important;
-    width:min(175px,42vw) !important;
+    gap:0.45rem !important;
+    width:145px !important;
   }
 
   .hero-badges > div{
-    min-width:0 !important;
-    padding:0.7rem 0.75rem !important;
+    min-width:145px !important;
+    width:145px !important;
+    padding:0.54rem 0.58rem !important;
+    border-radius:0.82rem !important;
+  }
+
+  .hero-badges > div p:first-child{
+    font-size:0.58rem !important;
+    letter-spacing:0.06em !important;
+  }
+
+  .hero-badges > div p:last-child{
+    font-size:0.72rem !important;
+    line-height:1.12 !important;
   }
 
   .hero-controls{
-    bottom:24px !important;
-    gap:0.7rem !important;
+    bottom:14px !important;
+    gap:0.65rem !important;
+  }
+
+  .hero-controls button{
+    width:34px !important;
+    height:34px !important;
   }
 }
 
@@ -1174,39 +1204,59 @@ export default function HomePage() {
   .sticky-label{display:none !important;}
   .sticky-bar{padding:0.65rem 0.75rem !important;gap:0.5rem !important;}
 
-  /* hero layout tighter */
   .hero-ctas{
-    gap:0.55rem !important;
+    max-width:205px !important;
+    gap:0.48rem !important;
   }
 
   .hero-ctas>*{
-    padding:0.72rem 0.85rem !important;
-    font-size:0.82rem !important;
-    border-radius:0.7rem !important;
+    width:205px !important;
+    max-width:205px !important;
+    min-width:205px !important;
+    padding:0.64rem 0.8rem !important;
+    font-size:0.79rem !important;
+    border-radius:0.68rem !important;
+  }
+
+  .hero-proof{
+    max-width:205px !important;
+    gap:0.45rem 0.8rem !important;
+  }
+
+  .hero-proof > *{
+    font-size:0.72rem !important;
   }
 
   .hero-badges{
-    right:0.7rem !important;
-    bottom:98px !important;
-    width:min(155px,40vw) !important;
+    right:0.55rem !important;
+    bottom:118px !important;
+    width:132px !important;
+    gap:0.4rem !important;
   }
 
   .hero-badges > div{
-    padding:0.62rem 0.68rem !important;
-    border-radius:0.85rem !important;
+    min-width:132px !important;
+    width:132px !important;
+    padding:0.48rem 0.52rem !important;
+    border-radius:0.76rem !important;
+  }
+
+  .hero-badges > div p:first-child{
+    font-size:0.54rem !important;
   }
 
   .hero-badges > div p:last-child{
-    font-size:0.78rem !important;
+    font-size:0.68rem !important;
+    line-height:1.08 !important;
   }
 
   .hero-controls{
-    bottom:18px !important;
+    bottom:12px !important;
   }
 
   .hero-controls button{
-    width:34px !important;
-    height:34px !important;
+    width:32px !important;
+    height:32px !important;
   }
 }
           

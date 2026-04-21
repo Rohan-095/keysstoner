@@ -543,7 +543,7 @@ function HeroSlider({ openQuote }) {
   const goTo = useCallback((idx) => {
     setPrev(cur);
     setCur(idx);
-    setTextKey(k => k + 1);
+    setTextKey((k) => k + 1);
   }, [cur]);
 
   const next = useCallback(() => goTo((cur + 1) % heroSlides.length), [cur, goTo]);
@@ -555,137 +555,449 @@ function HeroSlider({ openQuote }) {
 
   return (
     <div
-      style={{ position:"relative", width:"100%", height:"100vh", minHeight:600, maxHeight:920, overflow:"hidden" }}
-      onMouseEnter={()=>setPaused(true)}
-      onMouseLeave={()=>setPaused(false)}
+      className="hero-slider-wrap"
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100svh",
+        minHeight: 640,
+        maxHeight: 920,
+        overflow: "hidden"
+      }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      {/* Background layers */}
       {heroSlides.map((s, i) => (
-        <div key={i} style={{
-          position:"absolute", inset:0, zIndex:1,
-          opacity: i === cur ? 1 : (i === prev ? 0 : 0),
-          transition: "opacity 1.2s cubic-bezier(.4,0,.2,1)",
-          transform: i === cur ? "scale(1.04)" : "scale(1.0)",
-          animation: i === cur ? "kenBurns 6s ease-out forwards" : "none",
-        }}>
-          <img src={s.image} alt={s.tag} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 1,
+            opacity: i === cur ? 1 : 0,
+            transition: "opacity 1.2s cubic-bezier(.4,0,.2,1)",
+            transform: i === cur ? "scale(1.04)" : "scale(1.0)",
+            animation: i === cur ? "kenBurns 6s ease-out forwards" : "none"
+          }}
+        >
+          <img
+            src={s.image}
+            alt={s.tag}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
         </div>
       ))}
 
-      {/* Gradient overlay */}
-      <div style={{ position:"absolute", inset:0, zIndex:2, background:"linear-gradient(135deg,rgba(6,12,26,0.88) 0%,rgba(9,20,45,0.72) 50%,rgba(6,14,32,0.5) 100%)" }}/>
-      {/* Bottom fade */}
-      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"30%", zIndex:3, background:"linear-gradient(to top,rgba(9,20,40,0.85),transparent)" }}/>
-      {/* Grid texture */}
-      <div style={{ position:"absolute", inset:0, zIndex:2, backgroundImage:"linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px)", backgroundSize:"64px 64px", maskImage:"radial-gradient(ellipse 85% 85% at 50% 50%,black 30%,transparent 100%)" }}/>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
+          background:
+            "linear-gradient(135deg,rgba(6,12,26,0.88) 0%,rgba(9,20,45,0.72) 50%,rgba(6,14,32,0.5) 100%)"
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "30%",
+          zIndex: 3,
+          background: "linear-gradient(to top,rgba(9,20,40,0.85),transparent)"
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage: "radial-gradient(ellipse 85% 85% at 50% 50%,black 30%,transparent 100%)"
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          zIndex: 2,
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          background: "radial-gradient(circle,rgba(42,74,130,0.35) 0%,transparent 70%)",
+          top: "-10%",
+          right: "-8%",
+          animation: "orbFloat 14s ease-in-out infinite",
+          pointerEvents: "none"
+        }}
+      />
 
-      {/* Floating orb */}
-      <div style={{ position:"absolute", zIndex:2, width:600, height:600, borderRadius:"50%", background:"radial-gradient(circle,rgba(42,74,130,0.35) 0%,transparent 70%)", top:"-10%", right:"-8%", animation:"orbFloat 14s ease-in-out infinite", pointerEvents:"none" }}/>
-
-      {/* Content */}
-      <div style={{ position:"absolute", inset:0, zIndex:10, display:"flex", flexDirection:"column", justifyContent:"center", maxWidth:1300, margin:"0 auto", padding:"0 1.5rem", width:"100%" }}>
-
-        {/* Animated text block */}
-        <div key={textKey} style={{ maxWidth:720, paddingBottom:"1rem", animation:"heroTextIn .72s cubic-bezier(.22,.68,0,1.2) both" }}>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:"0.5rem", background:"rgba(230,168,23,0.1)", border:"1px solid rgba(230,168,23,0.3)", borderRadius:"999px", padding:"0.42rem 1rem", marginBottom:"1.6rem" }}>
-            <div style={{ width:7, height:7, borderRadius:"50%", background:T.gold, animation:"pulseDot 1.8s ease infinite" }}/>
-            <span style={{ color:T.goldLight, fontSize:"0.82rem", fontWeight:700, letterSpacing:"0.05em" }}>Trusted exterior cleaning · Lower Mainland</span>
+      <div
+        className="hero-inner"
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          maxWidth: 1300,
+          margin: "0 auto",
+          padding: "0 1.5rem",
+          width: "100%"
+        }}
+      >
+        <div
+          key={textKey}
+          className="hero-copy"
+          style={{
+            maxWidth: 720,
+            animation: "heroTextIn .72s cubic-bezier(.22,.68,0,1.2) both"
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              background: "rgba(230,168,23,0.1)",
+              border: "1px solid rgba(230,168,23,0.3)",
+              borderRadius: "999px",
+              padding: "0.42rem 1rem",
+              marginBottom: "1.6rem"
+            }}
+          >
+            <div
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: "50%",
+                background: T.gold,
+                animation: "pulseDot 1.8s ease infinite"
+              }}
+            />
+            <span
+              style={{
+                color: T.goldLight,
+                fontSize: "0.82rem",
+                fontWeight: 700,
+                letterSpacing: "0.05em"
+              }}
+            >
+              Trusted exterior cleaning · Lower Mainland
+            </span>
           </div>
 
-          <h1 style={{ margin:"0 0 1.2rem", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"clamp(2.8rem,6.5vw,5.2rem)", lineHeight:1.0, letterSpacing:"-0.04em", color:"#fff" }}>
+          <h1
+            className="hero-title"
+            style={{
+              margin: "0 0 1.2rem",
+              fontFamily: "'Bricolage Grotesque',sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(2.8rem,6.5vw,5.2rem)",
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
+              color: "#fff"
+            }}
+          >
             {slide.headline.map((line, i) => (
-              <span key={i} style={{ display:"block", animation:`heroLineIn .62s cubic-bezier(.22,.68,0,1.2) ${i * 90}ms both` }}>
-                {i === 2 ? <span style={{ background:T.gradGold, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>{line}</span> : line}
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  animation: `heroLineIn .62s cubic-bezier(.22,.68,0,1.2) ${i * 90}ms both`
+                }}
+              >
+                {i === 2 ? (
+                  <span
+                    style={{
+                      background: T.gradGold,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text"
+                    }}
+                  >
+                    {line}
+                  </span>
+                ) : (
+                  line
+                )}
               </span>
             ))}
           </h1>
 
-          <p style={{ margin:"0 0 2.4rem", color:"rgba(255,255,255,0.68)", fontSize:"1.08rem", lineHeight:1.76, maxWidth:560, animation:"heroSubIn .7s cubic-bezier(.22,.68,0,1.2) .25s both" }}>
+          <p
+            className="hero-sub"
+            style={{
+              margin: "0 0 2.1rem",
+              color: "rgba(255,255,255,0.68)",
+              fontSize: "1.08rem",
+              lineHeight: 1.76,
+              maxWidth: 560,
+              animation: "heroSubIn .7s cubic-bezier(.22,.68,0,1.2) .25s both"
+            }}
+          >
             {slide.sub}
           </p>
 
-          <div style={{ display:"flex", gap:"0.88rem", flexWrap:"wrap", marginBottom:"2.6rem", animation:"heroCTAIn .7s cubic-bezier(.22,.68,0,1.2) .38s both" }}>
-            <GlowBtn gold onClick={()=>openQuote()}>{slide.cta} <ArrowRight size={16}/></GlowBtn>
-            <GlowBtn ghost href={`tel:${PHONE_RAW}`}><Phone size={15}/> {PHONE_DISPLAY}</GlowBtn>
-            <GlowBtn wa href={buildWA(WA_DEFAULT_MSG)} target="_blank" rel="noopener noreferrer"><MessageCircle size={15}/> WhatsApp</GlowBtn>
+          <div
+            className="hero-ctas"
+            style={{
+              display: "flex",
+              gap: "0.88rem",
+              flexWrap: "wrap",
+              marginBottom: "2rem",
+              animation: "heroCTAIn .7s cubic-bezier(.22,.68,0,1.2) .38s both"
+            }}
+          >
+            <GlowBtn gold onClick={() => openQuote()}>
+              {slide.cta} <ArrowRight size={16} />
+            </GlowBtn>
+            <GlowBtn ghost href={`tel:${PHONE_RAW}`}>
+              <Phone size={15} /> {PHONE_DISPLAY}
+            </GlowBtn>
+            <GlowBtn wa href={buildWA(WA_DEFAULT_MSG)} target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={15} /> WhatsApp
+            </GlowBtn>
           </div>
 
-          <div style={{ display:"flex", gap:"1.5rem", flexWrap:"wrap", animation:"heroCTAIn .7s cubic-bezier(.22,.68,0,1.2) .5s both" }}>
-            {["500+ Homes","5★ Rated","Same-Day","Insured"].map(t=>(
-              <div key={t} style={{ display:"flex", alignItems:"center", gap:"0.4rem", color:"rgba(255,255,255,0.55)", fontSize:"0.84rem" }}>
-                <CheckCircle2 size={13} style={{ color:T.gold }}/> {t}
+          <div
+            className="hero-proof"
+            style={{
+              display: "flex",
+              gap: "1.5rem",
+              flexWrap: "wrap",
+              animation: "heroCTAIn .7s cubic-bezier(.22,.68,0,1.2) .5s both"
+            }}
+          >
+            {["500+ Homes", "5★ Rated", "Same-Day", "Insured"].map((t) => (
+              <div
+                key={t}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  color: "rgba(255,255,255,0.55)",
+                  fontSize: "0.84rem"
+                }}
+              >
+                <CheckCircle2 size={13} style={{ color: T.gold }} /> {t}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Floating badges */}
         <div
-  className="hero-badges"
-  style={{
-    position:"absolute",
-    right:"1.5rem",
-    top:"50%",
-    transform:"translateY(-50%)",
-    display:"flex",
-    flexDirection:"column",
-    gap:"0.85rem",
-    maxWidth:"220px"
-  }}
->
-          <div style={{ background:"rgba(13,28,63,0.9)", backdropFilter:"blur(16px)", borderRadius:"1.1rem", padding:"0.88rem 1.1rem", border:"1px solid rgba(255,255,255,0.12)", animation:"floatY 5s ease-in-out infinite", display:"flex", alignItems:"center", gap:"0.7rem", boxShadow:"0 18px 48px rgba(0,0,0,0.35)", minWidth:180 }}>
-            <div style={{ width:40, height:40, borderRadius:"0.7rem", background:"rgba(230,168,23,0.12)", border:"1px solid rgba(230,168,23,0.22)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-              <Clock3 size={18} style={{ color:T.gold }}/>
+          className="hero-badges"
+          style={{
+            position: "absolute",
+            right: "1.5rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.85rem",
+            width: "min(220px, 28vw)"
+          }}
+        >
+          <div
+            style={{
+              background: "rgba(13,28,63,0.9)",
+              backdropFilter: "blur(16px)",
+              borderRadius: "1.1rem",
+              padding: "0.88rem 1.1rem",
+              border: "1px solid rgba(255,255,255,0.12)",
+              animation: "floatY 5s ease-in-out infinite",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.7rem",
+              boxShadow: "0 18px 48px rgba(0,0,0,0.35)"
+            }}
+          >
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: "0.7rem",
+                background: "rgba(230,168,23,0.12)",
+                border: "1px solid rgba(230,168,23,0.22)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              <Clock3 size={18} style={{ color: T.gold }} />
             </div>
             <div>
-              <p style={{ margin:0, color:"rgba(255,255,255,0.48)", fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:"0.08em" }}>Response</p>
-              <p style={{ margin:0, color:"#fff", fontWeight:800, fontSize:"0.9rem" }}>Same day</p>
+              <p style={{ margin: 0, color: "rgba(255,255,255,0.48)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                Response
+              </p>
+              <p style={{ margin: 0, color: "#fff", fontWeight: 800, fontSize: "0.9rem" }}>Same day</p>
             </div>
           </div>
-          <div style={{ background:"rgba(13,28,63,0.9)", backdropFilter:"blur(16px)", borderRadius:"1.1rem", padding:"0.88rem 1.1rem", border:"1px solid rgba(255,255,255,0.12)", animation:"floatY 6s ease-in-out infinite 1.2s", display:"flex", alignItems:"center", gap:"0.7rem", boxShadow:"0 18px 48px rgba(0,0,0,0.35)", minWidth:180 }}>
-            <div style={{ display:"flex", gap:1.5, flexShrink:0 }}>{Array.from({length:5}).map((_,i)=><Star key={i} size={13} style={{color:T.gold,fill:T.gold}}/>)}</div>
-            <p style={{ margin:0, color:"#fff", fontWeight:800, fontSize:"0.88rem" }}>5★ · 500+ Homes</p>
+
+          <div
+            style={{
+              background: "rgba(13,28,63,0.9)",
+              backdropFilter: "blur(16px)",
+              borderRadius: "1.1rem",
+              padding: "0.88rem 1.1rem",
+              border: "1px solid rgba(255,255,255,0.12)",
+              animation: "floatY 6s ease-in-out infinite 1.2s",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.7rem",
+              boxShadow: "0 18px 48px rgba(0,0,0,0.35)"
+            }}
+          >
+            <div style={{ display: "flex", gap: 1.5, flexShrink: 0 }}>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} size={13} style={{ color: T.gold, fill: T.gold }} />
+              ))}
+            </div>
+            <p style={{ margin: 0, color: "#fff", fontWeight: 800, fontSize: "0.88rem" }}>5★ · 500+ Homes</p>
           </div>
-          <div style={{ background:"rgba(13,28,63,0.9)", backdropFilter:"blur(16px)", borderRadius:"1.1rem", padding:"0.88rem 1.1rem", border:"1px solid rgba(255,255,255,0.12)", animation:"floatY 7s ease-in-out infinite 2.4s", display:"flex", alignItems:"center", gap:"0.7rem", boxShadow:"0 18px 48px rgba(0,0,0,0.35)", minWidth:180 }}>
-            <div style={{ width:40, height:40, borderRadius:"0.7rem", background:"rgba(230,168,23,0.12)", border:"1px solid rgba(230,168,23,0.22)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-              <ShieldCheck size={18} style={{ color:T.gold }}/>
+
+          <div
+            style={{
+              background: "rgba(13,28,63,0.9)",
+              backdropFilter: "blur(16px)",
+              borderRadius: "1.1rem",
+              padding: "0.88rem 1.1rem",
+              border: "1px solid rgba(255,255,255,0.12)",
+              animation: "floatY 7s ease-in-out infinite 2.4s",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.7rem",
+              boxShadow: "0 18px 48px rgba(0,0,0,0.35)"
+            }}
+          >
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: "0.7rem",
+                background: "rgba(230,168,23,0.12)",
+                border: "1px solid rgba(230,168,23,0.22)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              <ShieldCheck size={18} style={{ color: T.gold }} />
             </div>
             <div>
-              <p style={{ margin:0, color:"rgba(255,255,255,0.48)", fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:"0.08em" }}>Licensed</p>
-              <p style={{ margin:0, color:"#fff", fontWeight:800, fontSize:"0.9rem" }}>& Insured</p>
+              <p style={{ margin: 0, color: "rgba(255,255,255,0.48)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                Licensed
+              </p>
+              <p style={{ margin: 0, color: "#fff", fontWeight: 800, fontSize: "0.9rem" }}>& Insured</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Slider Controls */}
-      <div style={{ position:"absolute", bottom:28, left:0, right:0, zIndex:20, display:"flex", alignItems:"center", justifyContent:"center", gap:"1rem" }}>
-        {/* Prev */}
-        <button onClick={prev_} style={{ width:40, height:40, borderRadius:"50%", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.18)", backdropFilter:"blur(8px)", display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", color:"#fff", transition:"background .2s, transform .2s" }}
-          onMouseEnter={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.2)"; e.currentTarget.style.transform="scale(1.08)"; }}
-          onMouseLeave={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.1)"; e.currentTarget.style.transform=""; }}
-        ><ChevronLeft size={17}/></button>
-        {/* Dots */}
-        <div style={{ display:"flex", gap:"0.55rem", alignItems:"center" }}>
-          {heroSlides.map((_,i)=>(
-            <button key={i} onClick={()=>goTo(i)} style={{ width: i===cur?"28px":"8px", height:"8px", borderRadius:"4px", background: i===cur?T.gold:"rgba(255,255,255,0.35)", border:"none", cursor:"pointer", padding:0, transition:"width .35s cubic-bezier(.22,.68,0,1.2), background .3s" }}/>
+      <div
+        className="hero-controls"
+        style={{
+          position: "absolute",
+          bottom: 28,
+          left: 0,
+          right: 0,
+          zIndex: 20,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem"
+        }}
+      >
+        <button
+          onClick={prev_}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            backdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            color: "#fff",
+            transition: "background .2s, transform .2s"
+          }}
+        >
+          <ChevronLeft size={17} />
+        </button>
+
+        <div style={{ display: "flex", gap: "0.55rem", alignItems: "center" }}>
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              style={{
+                width: i === cur ? "28px" : "8px",
+                height: "8px",
+                borderRadius: "4px",
+                background: i === cur ? T.gold : "rgba(255,255,255,0.35)",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                transition: "width .35s cubic-bezier(.22,.68,0,1.2), background .3s"
+              }}
+            />
           ))}
         </div>
-        {/* Next */}
-        <button onClick={next} style={{ width:40, height:40, borderRadius:"50%", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.18)", backdropFilter:"blur(8px)", display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", color:"#fff", transition:"background .2s, transform .2s" }}
-          onMouseEnter={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.2)"; e.currentTarget.style.transform="scale(1.08)"; }}
-          onMouseLeave={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.1)"; e.currentTarget.style.transform=""; }}
-        ><ChevronRight size={17}/></button>
+
+        <button
+          onClick={next}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            backdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            color: "#fff",
+            transition: "background .2s, transform .2s"
+          }}
+        >
+          <ChevronRight size={17} />
+        </button>
       </div>
 
-      {/* Progress bar */}
-      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:2, zIndex:21, background:"rgba(255,255,255,0.1)" }}>
-        <div key={cur} style={{ height:"100%", background:T.gradGold, animation:`progressBar ${paused?10000:5500}ms linear forwards`, transformOrigin:"left" }}/>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 2,
+          zIndex: 21,
+          background: "rgba(255,255,255,0.1)"
+        }}
+      >
+        <div
+          key={cur}
+          style={{
+            height: "100%",
+            background: T.gradGold,
+            animation: `progressBar ${paused ? 10000 : 5500}ms linear forwards`,
+            transformOrigin: "left"
+          }}
+        />
       </div>
     </div>
   );
 }
-
 /* ─── Stats Strip ─────────────────────────────────────────── */
 function StatsStrip() {
   return (
@@ -697,7 +1009,7 @@ function StatsStrip() {
               <p style={{ margin:0, fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.6rem", background:T.gradGold, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>{s.v}</p>
               <p style={{ margin:0, fontSize:"0.79rem", color:T.navyMuted }}>{s.l}</p>
             </div>
-          </Reveal>
+          </Reveal> 
         ))}
       </div>
     </div>
@@ -800,47 +1112,131 @@ export default function HomePage() {
 
         
         @media(max-width:920px){
-          .desktop-nav{display:none !important;}
-          .menu-btn{display:flex !important;}
-          .two-col{grid-template-columns:1fr !important;gap:2rem !important;}
-          .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
-          .svc-grid{grid-template-columns:repeat(2,1fr) !important;}
-          .cta-row{flex-direction:column !important;}
-          .cta-row>*{width:100% !important;justify-content:center;}
-          .hero-ctas{flex-direction:column !important;}
-          .hero-ctas>*{width:100% !important;justify-content:center;}
-        }
-        @media(max-width:620px){
-          .svc-grid{grid-template-columns:1fr !important;}
-          .results-grid{grid-template-columns:1fr !important;}
-          .trust-grid{grid-template-columns:1fr !important;}
-          .city-grid{grid-template-columns:repeat(2,1fr) !important;}
-          .footer-grid{grid-template-columns:1fr 1fr !important;}
-          .form-name-row{grid-template-columns:1fr !important;}
-          .wa-label{display:none !important;}
-          .sticky-label{display:none !important;}
-          .sticky-bar{padding:0.65rem 0.75rem !important;gap:0.5rem !important;}
-        }
-          /* ===== HERO BADGES MOBILE FIX ===== */
-@media (max-width: 920px){
+  .desktop-nav{display:none !important;}
+  .menu-btn{display:flex !important;}
+  .two-col{grid-template-columns:1fr !important;gap:2rem !important;}
+  .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
+  .svc-grid{grid-template-columns:repeat(2,1fr) !important;}
+  .cta-row{flex-direction:column !important;}
+  .cta-row>*{width:100% !important;justify-content:center;}
+  .hero-ctas{flex-direction:column !important;}
+  .hero-ctas>*{width:100% !important;justify-content:center;}
+
+  .hero-slider-wrap{
+    min-height:760px !important;
+    max-height:none !important;
+  }
+
+  .hero-inner{
+    justify-content:flex-start !important;
+    padding-top:110px !important;
+    padding-bottom:120px !important;
+  }
+
+  .hero-copy{
+    max-width:100% !important;
+    padding-right:0 !important;
+  }
+
+  .hero-title{
+    font-size:clamp(2.5rem,12vw,4rem) !important;
+    max-width:88vw !important;
+  }
+
+  .hero-sub{
+    font-size:1rem !important;
+    max-width:88vw !important;
+  }
+
+  .hero-proof{
+    gap:1rem !important;
+  }
+
   .hero-badges{
-    position: static !important;
-    transform: none !important;
-    margin-top: 1.5rem;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    width: 100%;
+    top:auto !important;
+    bottom:110px !important;
+    right:1rem !important;
+    left:auto !important;
+    transform:none !important;
+    width:min(210px,44vw) !important;
+    gap:0.65rem !important;
+  }
+
+  .hero-controls{
+    bottom:34px !important;
   }
 }
 
-@media (max-width: 620px){
+@media(max-width:620px){
+  .svc-grid{grid-template-columns:1fr !important;}
+  .results-grid{grid-template-columns:1fr !important;}
+  .trust-grid{grid-template-columns:1fr !important;}
+  .city-grid{grid-template-columns:repeat(2,1fr) !important;}
+  .footer-grid{grid-template-columns:1fr 1fr !important;}
+  .form-name-row{grid-template-columns:1fr !important;}
+  .wa-label{display:none !important;}
+  .sticky-label{display:none !important;}
+  .sticky-bar{padding:0.65rem 0.75rem !important;gap:0.5rem !important;}
+
+  .hero-slider-wrap{
+    min-height:820px !important;
+  }
+
+  .hero-inner{
+    padding-top:102px !important;
+    padding-left:1rem !important;
+    padding-right:1rem !important;
+    padding-bottom:120px !important;
+  }
+
+  .hero-title{
+    font-size:clamp(2.4rem,13vw,3.7rem) !important;
+    line-height:0.98 !important;
+    max-width:78vw !important;
+  }
+
+  .hero-sub{
+    max-width:82vw !important;
+    line-height:1.65 !important;
+    margin-bottom:1.6rem !important;
+  }
+
+  .hero-ctas{
+    gap:0.7rem !important;
+    margin-bottom:1.35rem !important;
+  }
+
+  .hero-proof{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:0.75rem 1rem !important;
+    max-width:82vw !important;
+  }
+
   .hero-badges{
-    gap: 0.6rem !important;
+    right:0.85rem !important;
+    bottom:108px !important;
+    width:min(190px,46vw) !important;
+    gap:0.55rem !important;
   }
 
   .hero-badges > div{
-    width: 100% !important;
-    justify-content: flex-start !important;
+    padding:0.7rem 0.8rem !important;
+    border-radius:0.95rem !important;
+  }
+
+  .hero-badges > div p:last-child{
+    font-size:0.82rem !important;
+  }
+
+  .hero-controls{
+    bottom:28px !important;
+    gap:0.8rem !important;
+  }
+
+  .hero-controls button{
+    width:38px !important;
+    height:38px !important;
   }
 }
           

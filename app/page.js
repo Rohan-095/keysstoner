@@ -586,7 +586,7 @@ function HeroSlider({ openQuote }) {
       <div style={{ position:"absolute", inset:0, zIndex:10, display:"flex", flexDirection:"column", justifyContent:"center", maxWidth:1300, margin:"0 auto", padding:"0 1.5rem", width:"100%" }}>
 
         {/* Animated text block */}
-        <div key={textKey} style={{ maxWidth:720, animation:"heroTextIn .72s cubic-bezier(.22,.68,0,1.2) both" }}>
+        <div key={textKey} style={{ maxWidth:720, paddingBottom:"1rem", animation:"heroTextIn .72s cubic-bezier(.22,.68,0,1.2) both" }}>
           <div style={{ display:"inline-flex", alignItems:"center", gap:"0.5rem", background:"rgba(230,168,23,0.1)", border:"1px solid rgba(230,168,23,0.3)", borderRadius:"999px", padding:"0.42rem 1rem", marginBottom:"1.6rem" }}>
             <div style={{ width:7, height:7, borderRadius:"50%", background:T.gold, animation:"pulseDot 1.8s ease infinite" }}/>
             <span style={{ color:T.goldLight, fontSize:"0.82rem", fontWeight:700, letterSpacing:"0.05em" }}>Trusted exterior cleaning · Lower Mainland</span>
@@ -620,7 +620,19 @@ function HeroSlider({ openQuote }) {
         </div>
 
         {/* Floating badges */}
-        <div className="hero-badges" style={{ position:"absolute", right:"1.5rem", top:"50%", transform:"translateY(-50%)", display:"flex", flexDirection:"column", gap:"0.85rem" }}>
+        <div
+  className="hero-badges"
+  style={{
+    position:"absolute",
+    right:"1.5rem",
+    top:"50%",
+    transform:"translateY(-50%)",
+    display:"flex",
+    flexDirection:"column",
+    gap:"0.85rem",
+    maxWidth:"220px"
+  }}
+>
           <div style={{ background:"rgba(13,28,63,0.9)", backdropFilter:"blur(16px)", borderRadius:"1.1rem", padding:"0.88rem 1.1rem", border:"1px solid rgba(255,255,255,0.12)", animation:"floatY 5s ease-in-out infinite", display:"flex", alignItems:"center", gap:"0.7rem", boxShadow:"0 18px 48px rgba(0,0,0,0.35)", minWidth:180 }}>
             <div style={{ width:40, height:40, borderRadius:"0.7rem", background:"rgba(230,168,23,0.12)", border:"1px solid rgba(230,168,23,0.22)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
               <Clock3 size={18} style={{ color:T.gold }}/>
@@ -809,7 +821,28 @@ export default function HomePage() {
           .sticky-label{display:none !important;}
           .sticky-bar{padding:0.65rem 0.75rem !important;gap:0.5rem !important;}
         }
-          
+          /* ===== HERO BADGES MOBILE FIX ===== */
+@media (max-width: 920px){
+  .hero-badges{
+    position: static !important;
+    transform: none !important;
+    margin-top: 1.5rem;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100%;
+  }
+}
+
+@media (max-width: 620px){
+  .hero-badges{
+    gap: 0.6rem !important;
+  }
+
+  .hero-badges > div{
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+}
           
       `}</style>
       

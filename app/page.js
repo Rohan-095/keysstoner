@@ -1071,7 +1071,7 @@ export default function HomePage() {
   const scrolled = scrollY > 60;
 
   return (
-    <div style={{ minHeight:"100vh", background:T.navyDeep, color:"#fff", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
+    <div style={{ minHeight:"100svh", background:T.navyDeep, color:"#fff", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Bricolage+Grotesque:wght@600;700;800&display=swap');
@@ -1117,53 +1117,49 @@ export default function HomePage() {
   .two-col{grid-template-columns:1fr !important;gap:2rem !important;}
   .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
   .svc-grid{grid-template-columns:repeat(2,1fr) !important;}
+
+  /* buttons smaller on mobile */
   .cta-row{flex-direction:column !important;}
-  .cta-row>*{width:100% !important;justify-content:center;}
-  .hero-ctas{flex-direction:column !important;}
-  .hero-ctas>*{width:100% !important;justify-content:center;}
-
-  .hero-slider-wrap{
-    min-height:760px !important;
-    max-height:none !important;
+  .cta-row>*{
+    width:auto !important;
+    min-width:0 !important;
+    justify-content:center !important;
   }
 
-  .hero-inner{
-    justify-content:flex-start !important;
-    padding-top:110px !important;
-    padding-bottom:120px !important;
+  .hero-ctas{
+    flex-direction:row !important;
+    flex-wrap:wrap !important;
+    gap:0.65rem !important;
+    margin-bottom:1.35rem !important;
   }
 
-  .hero-copy{
-    max-width:100% !important;
-    padding-right:0 !important;
-  }
-
-  .hero-title{
-    font-size:clamp(2.5rem,12vw,4rem) !important;
-    max-width:88vw !important;
-  }
-
-  .hero-sub{
-    font-size:1rem !important;
-    max-width:88vw !important;
-  }
-
-  .hero-proof{
-    gap:1rem !important;
+  .hero-ctas>*{
+    width:auto !important;
+    min-width:0 !important;
+    flex:0 1 auto !important;
+    justify-content:center !important;
+    padding:0.82rem 1rem !important;
+    font-size:0.88rem !important;
+    border-radius:0.75rem !important;
   }
 
   .hero-badges{
+    right:0.9rem !important;
     top:auto !important;
-    bottom:110px !important;
-    right:1rem !important;
-    left:auto !important;
+    bottom:105px !important;
     transform:none !important;
-    width:min(210px,44vw) !important;
-    gap:0.65rem !important;
+    gap:0.55rem !important;
+    width:min(175px,42vw) !important;
+  }
+
+  .hero-badges > div{
+    min-width:0 !important;
+    padding:0.7rem 0.75rem !important;
   }
 
   .hero-controls{
-    bottom:34px !important;
+    bottom:24px !important;
+    gap:0.7rem !important;
   }
 }
 
@@ -1178,65 +1174,39 @@ export default function HomePage() {
   .sticky-label{display:none !important;}
   .sticky-bar{padding:0.65rem 0.75rem !important;gap:0.5rem !important;}
 
-  .hero-slider-wrap{
-    min-height:820px !important;
-  }
-
-  .hero-inner{
-    padding-top:102px !important;
-    padding-left:1rem !important;
-    padding-right:1rem !important;
-    padding-bottom:120px !important;
-  }
-
-  .hero-title{
-    font-size:clamp(2.4rem,13vw,3.7rem) !important;
-    line-height:0.98 !important;
-    max-width:78vw !important;
-  }
-
-  .hero-sub{
-    max-width:82vw !important;
-    line-height:1.65 !important;
-    margin-bottom:1.6rem !important;
-  }
-
+  /* hero layout tighter */
   .hero-ctas{
-    gap:0.7rem !important;
-    margin-bottom:1.35rem !important;
-  }
-
-  .hero-proof{
-    display:grid !important;
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:0.75rem 1rem !important;
-    max-width:82vw !important;
-  }
-
-  .hero-badges{
-    right:0.85rem !important;
-    bottom:108px !important;
-    width:min(190px,46vw) !important;
     gap:0.55rem !important;
   }
 
+  .hero-ctas>*{
+    padding:0.72rem 0.85rem !important;
+    font-size:0.82rem !important;
+    border-radius:0.7rem !important;
+  }
+
+  .hero-badges{
+    right:0.7rem !important;
+    bottom:98px !important;
+    width:min(155px,40vw) !important;
+  }
+
   .hero-badges > div{
-    padding:0.7rem 0.8rem !important;
-    border-radius:0.95rem !important;
+    padding:0.62rem 0.68rem !important;
+    border-radius:0.85rem !important;
   }
 
   .hero-badges > div p:last-child{
-    font-size:0.82rem !important;
+    font-size:0.78rem !important;
   }
 
   .hero-controls{
-    bottom:28px !important;
-    gap:0.8rem !important;
+    bottom:18px !important;
   }
 
   .hero-controls button{
-    width:38px !important;
-    height:38px !important;
+    width:34px !important;
+    height:34px !important;
   }
 }
           

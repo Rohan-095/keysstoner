@@ -809,27 +809,10 @@ export default function HomePage() {
           .sticky-label{display:none !important;}
           .sticky-bar{padding:0.65rem 0.75rem !important;gap:0.5rem !important;}
         }
-          @media(max-width:920px){
-  .hero-badges{
-    display:flex !important;
-    position:absolute;
-    bottom:120px;
-    left:50%;
-    transform:translateX(-50%);
-    flex-direction:row;
-    gap:0.5rem;
-    width:100%;
-    justify-content:center;
-    padding:0 1rem;
-  }
-
-  .hero-badges > div{
-    min-width:auto !important;
-    padding:0.6rem 0.8rem !important;
-    font-size:0.75rem !important;
-  }
-}
+          
+          
       `}</style>
+      
 
       {/* ════ HEADER ════ */}
       <header style={{

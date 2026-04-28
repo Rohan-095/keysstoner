@@ -61,5 +61,10 @@ async function recoverStaleCalls() {
 
 app.listen(PORT, () => {
   console.log(`Keystoners backend running on :${PORT}`);
+  console.log(`SUPABASE_URL:        ${process.env.SUPABASE_URL        ? "set" : "MISSING"}`);
+  console.log(`SUPABASE_SERVICE_KEY:${process.env.SUPABASE_SERVICE_KEY ? "set" : "MISSING"}`);
+  console.log(`VAPI_API_KEY:        ${process.env.VAPI_API_KEY         ? "set" : "MISSING"}`);
+  console.log(`VAPI_ASSISTANT_ID:   ${process.env.VAPI_ASSISTANT_ID    ? "set" : "MISSING"}`);
+  console.log(`VAPI_PHONE_NUMBER_ID:${process.env.VAPI_PHONE_NUMBER_ID ? "set" : "MISSING"}`);
   setInterval(recoverStaleCalls, 2 * 60 * 1000); // check every 2 minutes
 });

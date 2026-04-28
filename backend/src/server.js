@@ -19,7 +19,7 @@ app.use(cors({
       "http://localhost:3001",
     ].filter(Boolean);
     // Allow Vercel preview URLs and no-origin (server-to-server / curl)
-    if (!origin || allowed.includes(origin) || /\.vercel\.app$/.test(origin)) {
+    if (!origin || allowed.includes(origin) || /\.vercel\.app$/.test(origin) || /^http:\/\/localhost:\d+$/.test(origin)) {
       return cb(null, true);
     }
     cb(new Error("CORS: origin not allowed: " + origin));

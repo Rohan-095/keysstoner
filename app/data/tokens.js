@@ -1,0 +1,26 @@
+const T = {
+  navy:       "#0d1c3f",
+  navyMid:    "#18345f",
+  navyDeep:   "#091428",
+  navyCard:   "#16284a",
+  navyGlass:  "rgba(13,28,63,0.82)",
+  navyBorder: "rgba(255,255,255,0.1)",
+  navyMuted:  "rgba(255,255,255,0.58)",
+  navyFaint:  "rgba(255,255,255,0.07)",
+  gold:       "#e6a817",
+  goldLight:  "#f5c842",
+  goldGlow:   "rgba(230,168,23,0.32)",
+  goldFaint:  "rgba(230,168,23,0.12)",
+  white:      "#ffffff",
+  offWhite:   "#f4f7fc",
+  lightCard:  "#edf2fb",
+  slate:      "#5a6e8a",
+  slateLight: "#8fa3bf",
+  ink:        "#0c1a2e",
+  border:     "#dae2f0",
+  green:      "#16a34a",
+  greenBg:    "#dcfce7",
+  gradGold:   "linear-gradient(135deg, #e6a817 0%, #f5c842 100%)",
+};
+
+export default T;

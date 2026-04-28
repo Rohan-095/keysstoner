@@ -1,0 +1,55 @@
+require("dotenv").config();
+const express  = require("express");
+const cors     = require("cors");
+const supabase = require("./supabase");
+
+const leadsRouter    = require("./routes/leads");
+const webhooksRouter = require("./routes/webhooks");
+const statsRouter    = require("./routes/stats");
+
+const app  = express();
+const PORT = process.env.PORT || 4000;
+
+app.use(cors({
+  origin: [
+    process.env.FRONTEND_URL || "http://localhost:5173",
+    "http://localhost:3000",
+    "http://localhost:3001",
+  ],
+}));
+app.use(express.json());
+
+app.use("/api/leads",    leadsRouter);
+app.use("/api/webhooks", webhooksRouter);
+app.use("/api/stats",    statsRouter);
+
+app.get("/health", (_, res) => res.json({ ok: true }));
+
+// ─── Stale-call recovery ─────────────────────────────────────────────────────
+// If a lead stays "calling" for more than 5 minutes the webhook likely never
+// arrived. Mark it "no_answer" and close any dangling call records.
+async function recoverStaleCalls() {
+  const cutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+
+  const { data: stale } = await supabase
+    .from("leads")
+    .select("id")
+    .eq("status", "calling")
+    .lt("updated_at", cutoff);
+
+  if (!stale?.length) return;
+
+  for (const lead of stale) {
+    console.log(`[recovery] lead ${lead.id} stuck in "calling" >5 min — marking no_answer`);
+    await supabase.from("leads").update({ status: "no_answer" }).eq("id", lead.id);
+    await supabase.from("calls")
+      .update({ status: "completed" })
+      .eq("lead_id", lead.id)
+      .in("status", ["initiated", "ringing", "in_progress"]);
+  }
+}
+
+app.listen(PORT, () => {
+  console.log(`Keystoners backend running on :${PORT}`);
+  setInterval(recoverStaleCalls, 2 * 60 * 1000); // check every 2 minutes
+});

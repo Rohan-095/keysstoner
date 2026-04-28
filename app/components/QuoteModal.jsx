@@ -8,7 +8,7 @@ import { fld, selStyle, focusGold, blurGold } from "./ui/formStyles";
 import services from "../data/services";
 import coverage from "../data/coverage";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://keysstoner-production.up.railway.app/api";
 
 export default function QuoteModal({ open, onClose, prefill = "" }) {
   const [form, setForm]     = useState({ name:"", phone:"", email:"", service:prefill, city:"", message:"" });

@@ -8,7 +8,7 @@ import { buildWA } from "../data/config"; // used in the WhatsApp fallback link 
 import services from "../data/services";
 import coverage from "../data/coverage";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://keysstoner-production.up.railway.app/api";
 
 export default function LeadCaptureForm({ prefill = "", onSuccess }) {
   const [form, setForm] = useState({

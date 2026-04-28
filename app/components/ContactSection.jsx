@@ -10,7 +10,7 @@ import { PHONE_DISPLAY, PHONE_RAW } from "../data/config";
 import services from "../data/services";
 import coverage from "../data/coverage";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://keysstoner-production.up.railway.app/api";
 
 function ContactForm() {
   const [form, setForm] = useState({ name:"", phone:"", email:"", service:"", city:"", message:"" });

@@ -1,4 +1,6 @@
-const BASE = import.meta.env.VITE_API_URL || "/api";
+const BASE = import.meta.env.VITE_API_URL || "https://keysstoner-production.up.railway.app/api";
+
+console.log("[api] BASE URL:", BASE);
 
 async function request(path, opts = {}) {
   const res = await fetch(`${BASE}${path}`, {

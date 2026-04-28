@@ -11,11 +11,19 @@ const app  = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL || "http://localhost:5173",
-    "http://localhost:3000",
-    "http://localhost:3001",
-  ],
+  origin: (origin, cb) => {
+    const allowed = [
+      process.env.FRONTEND_URL,
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ].filter(Boolean);
+    // Allow Vercel preview URLs and no-origin (server-to-server / curl)
+    if (!origin || allowed.includes(origin) || /\.vercel\.app$/.test(origin)) {
+      return cb(null, true);
+    }
+    cb(new Error("CORS: origin not allowed: " + origin));
+  },
 }));
 app.use(express.json());
 

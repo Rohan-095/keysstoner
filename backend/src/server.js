@@ -8,7 +8,8 @@ const webhooksRouter = require("./routes/webhooks");
 const statsRouter    = require("./routes/stats");
 
 const app  = express();
-const PORT = process.env.PORT || 4000;
+const PORT = parseInt(process.env.PORT, 10) || 4000;
+const HOST = "0.0.0.0";
 
 app.use(cors({
   origin: (origin, cb) => {
@@ -59,8 +60,8 @@ async function recoverStaleCalls() {
   }
 }
 
-app.listen(PORT, () => {
-  console.log(`Keystoners backend running on :${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Keystoners backend running on ${HOST}:${PORT}`);
   console.log(`SUPABASE_URL:        ${process.env.SUPABASE_URL        ? "set" : "MISSING"}`);
   console.log(`SUPABASE_SERVICE_KEY:${process.env.SUPABASE_SERVICE_KEY ? "set" : "MISSING"}`);
   console.log(`VAPI_API_KEY:        ${process.env.VAPI_API_KEY         ? "set" : "MISSING"}`);

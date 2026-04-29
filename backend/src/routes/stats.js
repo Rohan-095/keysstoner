@@ -42,6 +42,7 @@ router.get("/", async (req, res) => {
   res.json({
     totals: {
       leads:          leads.length,
+      new:            count(leads, "status", "new"),
       booked:         count(leads, "status", "booked"),
       called:         count(leads, "status", "called"),
       no_answer:      count(leads, "status", "no_answer"),

@@ -3,7 +3,7 @@ import { STATUS_CONFIG } from "../lib/utils";
 
 const statuses = ["all", ...Object.keys(STATUS_CONFIG)];
 
-export default function FilterBar({ search, onSearch, status, onStatus }) {
+export default function FilterBar({ search, onSearch, status, onStatus, counts = {} }) {
   return (
     <div className="flex flex-wrap gap-3 items-center">
       {/* Search */}
@@ -20,19 +20,23 @@ export default function FilterBar({ search, onSearch, status, onStatus }) {
 
       {/* Status filter */}
       <div className="flex flex-wrap gap-1.5">
-        {statuses.map(s => (
-          <button
-            key={s}
-            onClick={() => onStatus(s)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-              status === s
-                ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-300"
-                : "bg-white/5 border-white/10 text-white/50 hover:text-white/80"
-            }`}
-          >
-            {s === "all" ? "All" : (STATUS_CONFIG[s]?.label ?? s)}
-          </button>
-        ))}
+        {statuses.map(s => {
+          const count = s === "all" ? counts.leads : counts[s];
+          const label = s === "all" ? "All" : (STATUS_CONFIG[s]?.label ?? s);
+          return (
+            <button
+              key={s}
+              onClick={() => onStatus(s)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                status === s
+                  ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-300"
+                  : "bg-white/5 border-white/10 text-white/50 hover:text-white/80"
+              }`}
+            >
+              {label}{count != null ? ` (${count})` : ""}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

@@ -16,7 +16,11 @@ export const SENTIMENT_CONFIG = {
 
 export function formatDate(iso) {
   if (!iso) return "—";
-  return new Intl.DateTimeFormat("en-CA", { dateStyle: "medium", timeStyle: "short" }).format(new Date(iso));
+  const d = new Date(iso);
+  const date = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const time = d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })
+    .replace(" AM", "am").replace(" PM", "pm");
+  return `${date}, ${time}`;
 }
 
 export function formatDuration(seconds) {

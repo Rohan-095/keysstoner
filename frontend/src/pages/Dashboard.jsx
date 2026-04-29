@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Sparkles, RefreshCw, LogOut } from "lucide-react";
+import { Sparkles, RefreshCw, LogOut, Download } from "lucide-react";
 import { api } from "../lib/api";
 import StatsCards  from "../components/StatsCards";
 import FilterBar   from "../components/FilterBar";
@@ -55,6 +55,16 @@ export default function Dashboard({ onLogout }) {
 
   const timeSince = Math.round((new Date() - lastRefresh) / 1000);
 
+  function exportCSV() {
+    const rows = [["Name","Phone","Email","Service","City","Status","Created At"]];
+    leads.forEach(l => rows.push([l.name, l.phone, l.email||"", l.service||"", l.city||"", l.status, l.created_at]));
+    const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    const a = Object.assign(document.createElement("a"), { href: url, download: "leads.csv" });
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="min-h-screen bg-[#091428] text-white">
       {/* Header */}
@@ -71,6 +81,13 @@ export default function Dashboard({ onLogout }) {
           </div>
           <div className="flex items-center gap-3 text-xs text-white/40">
             <span>Updated {timeSince}s ago</span>
+            <button
+              onClick={exportCSV}
+              title="Export CSV"
+              className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
+            >
+              <Download size={13}/>
+            </button>
             <button
               onClick={handleRefresh}
               title="Refresh"
@@ -97,6 +114,7 @@ export default function Dashboard({ onLogout }) {
         <FilterBar
           search={search}   onSearch={setSearch}
           status={status}   onStatus={setStatus}
+          counts={stats?.totals ?? {}}
         />
 
         {/* Table */}
@@ -104,6 +122,7 @@ export default function Dashboard({ onLogout }) {
           leads={leads}
           loading={loading}
           onSelect={setSelected}
+          status={status}
         />
       </main>
 

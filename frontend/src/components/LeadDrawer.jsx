@@ -46,7 +46,7 @@ export default function LeadDrawer({ lead, onClose, onRefresh }) {
         <div className="flex items-center justify-between p-5 border-b border-white/10 sticky top-0 bg-[#0d1c3f] z-10">
           <div>
             <h2 className="font-bold text-lg text-white">{lead.name}</h2>
-            <p className="text-sm text-white/50">{formatPhone(lead.phone)}</p>
+            <a href={`tel:${lead.phone}`} className="text-sm text-white/50 hover:text-white/80 transition-colors">{formatPhone(lead.phone)}</a>
           </div>
           <div className="flex items-center gap-2">
             <button

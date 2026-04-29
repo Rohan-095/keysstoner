@@ -1,7 +1,7 @@
 import { PhoneCall } from "lucide-react";
 import { STATUS_CONFIG, formatDate, formatPhone } from "../lib/utils";
 
-export default function LeadsTable({ leads, onSelect, loading }) {
+export default function LeadsTable({ leads, onSelect, loading, status }) {
   if (loading) return (
     <div className="space-y-2">
       {Array.from({ length: 6 }).map((_, i) => (
@@ -11,7 +11,9 @@ export default function LeadsTable({ leads, onSelect, loading }) {
   );
 
   if (!leads?.length) return (
-    <div className="text-center py-16 text-white/40">No leads found.</div>
+    <div className="text-center py-16 text-white/40">
+      {status && status !== "all" ? "No leads yet." : "No leads found."}
+    </div>
   );
 
   return (
@@ -29,14 +31,24 @@ export default function LeadsTable({ leads, onSelect, loading }) {
         <tbody>
           {leads.map(lead => {
             const cfg = STATUS_CONFIG[lead.status] || {};
+            const isNew = lead.status === "new";
             return (
               <tr
                 key={lead.id}
                 onClick={() => onSelect(lead)}
                 className="border-b border-white/5 hover:bg-white/5 cursor-pointer transition-colors"
+                style={isNew ? { borderLeft: "3px solid #e6a817" } : { borderLeft: "3px solid transparent" }}
               >
                 <td className="px-4 py-3 font-medium text-white">{lead.name}</td>
-                <td className="px-4 py-3 text-white/60">{formatPhone(lead.phone)}</td>
+                <td className="px-4 py-3">
+                  <a
+                    href={`tel:${lead.phone}`}
+                    onClick={e => e.stopPropagation()}
+                    className="text-white/60 hover:text-white/90 transition-colors"
+                  >
+                    {formatPhone(lead.phone)}
+                  </a>
+                </td>
                 <td className="px-4 py-3 text-white/60">{lead.email || "—"}</td>
                 <td className="px-4 py-3 text-white/60">{lead.service || "—"}</td>
                 <td className="px-4 py-3 text-white/60">{lead.city || "—"}</td>

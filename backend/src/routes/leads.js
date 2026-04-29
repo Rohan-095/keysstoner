@@ -27,7 +27,19 @@ router.post("/", async (req, res) => {
   const e164 = toE164(phone);
   const provider = getProvider();
 
-  // 1. Save lead — always start as "new"; promote to "calling" only if we fire a call
+  // 1. Check for existing lead with same phone — update instead of duplicating
+  const { data: existing } = await supabase
+    .from("leads").select("id, status").eq("phone", e164).maybeSingle();
+
+  if (existing) {
+    await supabase.from("leads")
+      .update({ name, email, address, city, service, notes, preferred_time })
+      .eq("id", existing.id);
+    console.log(`Lead ${existing.id} already exists for ${e164}, updated info.`);
+    return res.status(200).json({ success: true, leadId: existing.id, updated: true });
+  }
+
+  // 2. Save new lead — always start as "new"; promote to "calling" only if we fire a call
   const { data: lead, error: leadErr } = await supabase
     .from("leads")
     .insert({ name, phone: e164, email, address, city, service, notes, preferred_time, status: "new" })

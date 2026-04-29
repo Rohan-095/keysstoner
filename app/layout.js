@@ -12,19 +12,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Keystoners | Exterior Cleaning Vancouver & Lower Mainland",
-  description: "Professional exterior cleaning in Vancouver & the Lower Mainland. Roof cleaning, pressure washing, gutter cleaning & more. Free quotes — fast response.",
+  title: "KeystoneCleaner | Exterior Cleaning Vancouver & Surrey",
+  description: "Professional exterior cleaning in Vancouver, Surrey & the Lower Mainland. Roof cleaning, pressure washing, gutter cleaning & more. Free quotes — fast response.",
   openGraph: {
-    title: "Keystoners | Exterior Cleaning Vancouver & Lower Mainland",
-    description: "Professional exterior cleaning in Vancouver & the Lower Mainland. Roof cleaning, pressure washing, gutter cleaning & more.",
+    title: "KeystoneCleaner | Exterior Cleaning Vancouver & Surrey",
+    description: "Professional exterior cleaning in Vancouver, Surrey & the Lower Mainland. Roof cleaning, pressure washing, gutter cleaning & more.",
     type: "website",
     locale: "en_CA",
-    siteName: "Keystoners Exterior Cleaning",
+    siteName: "KeystoneCleaner",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keystoners | Exterior Cleaning Vancouver & Lower Mainland",
-    description: "Professional exterior cleaning in Vancouver & the Lower Mainland. Free quotes — fast response.",
+    title: "KeystoneCleaner | Exterior Cleaning Vancouver & Surrey",
+    description: "Professional exterior cleaning in Vancouver, Surrey & the Lower Mainland. Free quotes — fast response.",
   },
 };
 

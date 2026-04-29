@@ -39,7 +39,7 @@ export default function Login({ onLogin }) {
             <Sparkles size={24} className="text-yellow-400"/>
           </div>
           <div className="text-center">
-            <p className="font-bold text-white text-xl tracking-tight">Keystoners</p>
+            <p className="font-bold text-white text-xl tracking-tight">KeystoneCleaner</p>
             <p className="text-xs text-white/40 mt-0.5">Admin Dashboard</p>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function Login({ onLogin }) {
         </div>
 
         <p className="text-center text-white/20 text-xs mt-6">
-          Keystoners Exterior Cleaning · Admin Only
+          KeystoneCleaner · Admin Only
         </p>
       </div>
     </div>

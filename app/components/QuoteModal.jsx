@@ -39,7 +39,7 @@ export default function QuoteModal({ open, onClose, prefill = "" }) {
         }),
       });
       if (!res.ok) throw new Error();
-      const waMsg = `Hi Keystoners, I'd like to get a free quote. My name is ${form.name}, I need ${form.service} in ${form.city}.`;
+      const waMsg = `Hi KeystoneCleaner, I'd like to get a free quote. My name is ${form.name}, I need ${form.service} in ${form.city}.`;
       window.open(buildWA(waMsg), "_blank", "noopener,noreferrer");
       setStatus("success");
     } catch {

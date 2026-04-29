@@ -34,7 +34,7 @@ app.use("/api/leads",    leadsRouter);
 app.use("/api/webhooks", webhooksRouter);
 app.use("/api/stats",    statsRouter);
 
-app.get("/",       (_, res) => res.json({ service: "Keystoners API", status: "ok" }));
+app.get("/",       (_, res) => res.json({ service: "KeystoneCleaner API", status: "ok" }));
 app.get("/health", (_, res) => res.json({ ok: true }));
 
 // ─── Stale-call recovery ─────────────────────────────────────────────────────
@@ -62,7 +62,7 @@ async function recoverStaleCalls() {
 }
 
 app.listen(PORT, HOST, () => {
-  console.log(`Keystoners backend running on ${HOST}:${PORT}`);
+  console.log(`KeystoneCleaner backend running on ${HOST}:${PORT}`);
   console.log(`SUPABASE_URL:        ${process.env.SUPABASE_URL        ? "set" : "MISSING"}`);
   console.log(`SUPABASE_SERVICE_KEY:${process.env.SUPABASE_SERVICE_KEY ? "set" : "MISSING"}`);
   console.log(`VAPI_API_KEY:        ${process.env.VAPI_API_KEY         ? "set" : "MISSING"}`);

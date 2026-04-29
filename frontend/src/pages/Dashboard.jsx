@@ -75,7 +75,7 @@ export default function Dashboard({ onLogout }) {
               <Sparkles size={16} className="text-yellow-400"/>
             </div>
             <div>
-              <p className="font-bold text-white leading-none">Keystoners</p>
+              <p className="font-bold text-white leading-none">KeystoneCleaner</p>
               <p className="text-xs text-white/40">Admin Dashboard</p>
             </div>
           </div>

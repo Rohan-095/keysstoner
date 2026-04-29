@@ -95,7 +95,7 @@ async function callVapi({ toNumber, lead }) {
 // ─── Bland ────────────────────────────────────────────────────────────────────
 async function callBland({ toNumber, lead }) {
   const task = [
-    `You are calling ${lead.name} on behalf of Keystoners Exterior Cleaning, a professional exterior cleaning company in Vancouver, BC.`,
+    `You are calling ${lead.name} on behalf of KeystoneCleaner, a professional exterior cleaning company in Vancouver, BC.`,
     `They requested a quote for: ${lead.service || "exterior cleaning"} in ${lead.city || "the Lower Mainland"}.`,
     `Goals:`,
     `1. Confirm their service request and address (${lead.address || "not provided"}).`,

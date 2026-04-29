@@ -28,7 +28,7 @@ export default function ServiceModal({ service, open, onClose, onQuote }) {
           <p style={{ margin:"0 0 1.4rem", color:T.navyMuted, lineHeight:1.74, fontSize:"0.9rem" }}>{service.desc}</p>
           <div style={{ display:"flex", gap:"0.75rem", flexWrap:"wrap" }}>
             <GlowBtn gold onClick={() => { onClose(); onQuote(service.title); }}><ArrowRight size={15}/> Get a Quote</GlowBtn>
-            <GlowBtn wa href={buildWA(`Hi Keystoners, I'm interested in ${service.title}. Can I get a quote?`)} target="_blank" rel="noopener noreferrer"><MessageCircle size={15}/> WhatsApp</GlowBtn>
+            <GlowBtn wa href={buildWA(`Hi KeystoneCleaner, I'm interested in ${service.title}. Can I get a quote?`)} target="_blank" rel="noopener noreferrer"><MessageCircle size={15}/> WhatsApp</GlowBtn>
           </div>
         </div>
       </div>

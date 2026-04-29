@@ -23,7 +23,7 @@ export default function WhyUs({ openQuote }) {
         <div className="two-col" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"5rem", alignItems:"center" }}>
 
           <Reveal from="left">
-            <p style={{ margin:"0 0 0.55rem", fontSize:"0.74rem", textTransform:"uppercase", letterSpacing:"0.22em", color:T.gold, fontWeight:700 }}>Why Keystoners</p>
+            <p style={{ margin:"0 0 0.55rem", fontSize:"0.74rem", textTransform:"uppercase", letterSpacing:"0.22em", color:T.gold, fontWeight:700 }}>Why KeystoneCleaner</p>
             <h2 style={{ margin:"0 0 1.1rem", fontFamily:"'Bricolage Grotesque',sans-serif", color:"#fff", fontWeight:800, fontSize:"clamp(2rem,3.5vw,2.9rem)", lineHeight:1.07, letterSpacing:"-0.028em" }}>
               Professional service.<br/>No surprises.
             </h2>

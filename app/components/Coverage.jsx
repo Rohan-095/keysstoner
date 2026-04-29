@@ -78,7 +78,7 @@ export default function Coverage() {
           <Reveal delay={85}>
             <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:"1.45rem", padding:"1.95rem", height:"100%" }}>
               <p style={{ margin:"0 0 0.42rem", fontSize:"0.74rem", textTransform:"uppercase", letterSpacing:"0.22em", color:T.gold, fontWeight:700 }}>Top Reviews</p>
-              <h3 style={{ margin:"0 0 1.38rem", color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.22rem" }}>Why homeowners choose Keystoners</h3>
+              <h3 style={{ margin:"0 0 1.38rem", color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.22rem" }}>Why homeowners choose KeystoneCleaner</h3>
               <div style={{ display:"flex", flexDirection:"column", gap:"0.92rem" }}>
                 {reviews.slice(0, 3).map((r, i) => (
                   <div key={i} style={{ background:"rgba(255,255,255,0.05)", borderRadius:"1rem", padding:"1.08rem", border:"1px solid rgba(255,255,255,0.07)" }}>

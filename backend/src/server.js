@@ -34,6 +34,7 @@ app.use("/api/leads",    leadsRouter);
 app.use("/api/webhooks", webhooksRouter);
 app.use("/api/stats",    statsRouter);
 
+app.get("/",       (_, res) => res.json({ service: "Keystoners API", status: "ok" }));
 app.get("/health", (_, res) => res.json({ ok: true }));
 
 // ─── Stale-call recovery ─────────────────────────────────────────────────────

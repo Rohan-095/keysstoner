@@ -108,7 +108,7 @@ export default function LeadCaptureForm({ prefill = "", onSuccess }) {
 
       <p style={{ margin:0, textAlign:"center", fontSize:"0.75rem", color:T.navyMuted }}>
         We'll call you within minutes. You can also{" "}
-        <a href={buildWA("Hi Keystoners, I'd like a free quote.")} target="_blank" rel="noopener noreferrer" style={{ color:T.gold, fontWeight:600 }}>
+        <a href={buildWA("Hi Keystoners, I'd like to get a free quote")} target="_blank" rel="noopener noreferrer" style={{ color:T.gold, fontWeight:600 }}>
           message us on WhatsApp
         </a>.
       </p>

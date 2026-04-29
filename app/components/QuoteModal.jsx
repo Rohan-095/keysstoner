@@ -5,6 +5,7 @@ import Modal from "./ui/Modal";
 import GlowBtn from "./ui/GlowBtn";
 import T from "../data/tokens";
 import { fld, selStyle, focusGold, blurGold } from "./ui/formStyles";
+import { buildWA } from "../data/config";
 import services from "../data/services";
 import coverage from "../data/coverage";
 
@@ -38,6 +39,8 @@ export default function QuoteModal({ open, onClose, prefill = "" }) {
         }),
       });
       if (!res.ok) throw new Error();
+      const waMsg = `Hi Keystoners, I'd like to get a free quote. My name is ${form.name}, I need ${form.service} in ${form.city}.`;
+      window.open(buildWA(waMsg), "_blank", "noopener,noreferrer");
       setStatus("success");
     } catch {
       setStatus("error");
@@ -54,7 +57,7 @@ export default function QuoteModal({ open, onClose, prefill = "" }) {
             </div>
             <h3 style={{ margin:"0 0 0.5rem", color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontSize:"1.35rem", fontWeight:800 }}>Request received!</h3>
             <p style={{ margin:"0 0 1.5rem", color:T.navyMuted, lineHeight:1.7 }}>
-              Thanks — our team will contact you shortly to confirm your free quote.
+              We'll be in touch within 24 hours!
             </p>
             <GlowBtn gold onClick={onClose}>Done</GlowBtn>
           </div>

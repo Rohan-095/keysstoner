@@ -1,10 +1,9 @@
 'use client';
-import { ArrowRight, MessageCircle, BadgeCheck, Zap, ThumbsUp, ShieldCheck, MapPin, Award } from "lucide-react";
+import { ArrowRight, BadgeCheck, Zap, ThumbsUp, ShieldCheck, MapPin, Award } from "lucide-react";
 import Reveal from "./ui/Reveal";
 import BgOrbs from "./ui/BgOrbs";
 import GlowBtn from "./ui/GlowBtn";
 import T from "../data/tokens";
-import { buildWA, WA_DEFAULT_MSG } from "../data/config";
 
 const trustPoints = [
   { icon:BadgeCheck,  title:"No-pressure quotes",  body:"Clear guidance with no confusing sales tactics." },
@@ -32,9 +31,6 @@ export default function WhyUs({ openQuote }) {
             </p>
             <div className="cta-row" style={{ display:"flex", gap:"0.85rem", flexWrap:"wrap" }}>
               <GlowBtn gold onClick={() => openQuote()}>Get Free Quote <ArrowRight size={15}/></GlowBtn>
-              <GlowBtn wa href={buildWA(WA_DEFAULT_MSG)} target="_blank" rel="noopener noreferrer">
-                <MessageCircle size={15}/> WhatsApp
-              </GlowBtn>
             </div>
           </Reveal>
 

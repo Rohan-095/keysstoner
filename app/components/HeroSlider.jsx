@@ -1,9 +1,9 @@
 'use client';
 import { useState, useCallback } from "react";
-import { ArrowRight, Phone, CheckCircle2, Clock3, Star, ShieldCheck, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Phone, CheckCircle2, Clock3, Star, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
 import GlowBtn from "./ui/GlowBtn";
 import T from "../data/tokens";
-import { PHONE_DISPLAY, PHONE_RAW, buildWA, WA_DEFAULT_MSG } from "../data/config";
+import { PHONE_DISPLAY, PHONE_RAW } from "../data/config";
 import heroSlides from "../data/heroSlides";
 import useInterval from "../hooks/useInterval";
 
@@ -60,7 +60,6 @@ export default function HeroSlider({ openQuote }) {
           <div className="hero-ctas" style={{ display:"flex", gap:"0.88rem", flexWrap:"wrap", marginBottom:"2rem", animation:"heroCTAIn .7s cubic-bezier(.22,.68,0,1.2) .38s both" }}>
             <GlowBtn gold onClick={() => openQuote()}>{slide.cta} <ArrowRight size={16}/></GlowBtn>
             <GlowBtn ghost href={`tel:${PHONE_RAW}`}><Phone size={15}/> {PHONE_DISPLAY}</GlowBtn>
-            <GlowBtn wa href={buildWA(WA_DEFAULT_MSG)} target="_blank" rel="noopener noreferrer"><MessageCircle size={15}/> WhatsApp</GlowBtn>
           </div>
 
           <div className="hero-proof" style={{ display:"flex", gap:"1.5rem", flexWrap:"wrap", animation:"heroCTAIn .7s cubic-bezier(.22,.68,0,1.2) .5s both" }}>

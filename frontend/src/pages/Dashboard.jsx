@@ -12,6 +12,7 @@ export default function Dashboard({ onLogout }) {
   const [stats,      setStats]      = useState(null);
   const [leads,      setLeads]      = useState([]);
   const [loading,    setLoading]    = useState(true);
+  const [error,      setError]      = useState(null);
   const [search,     setSearch]     = useState("");
   const [status,     setStatus]     = useState("all");
   const [selected,   setSelected]   = useState(null);
@@ -39,8 +40,8 @@ export default function Dashboard({ onLogout }) {
       api.getStats(),
       api.getLeads({ status: status === "all" ? undefined : status, search: search || undefined }),
     ]).then(([s, l]) => {
-      setStats(s); setLeads(l); setLastRefresh(new Date()); setLoading(false);
-    }).catch(e => { console.error("Fetch error:", e); setLoading(false); });
+      setStats(s); setLeads(l); setLastRefresh(new Date()); setLoading(false); setError(null);
+    }).catch(e => { console.error("Fetch error:", e); setError(e.message); setLoading(false); });
   }, [status, search]);
 
   // 30-second poll
@@ -123,6 +124,13 @@ export default function Dashboard({ onLogout }) {
           status={status}   onStatus={setStatus}
           counts={stats?.totals ?? {}}
         />
+
+        {/* API error banner */}
+        {error && (
+          <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <strong>API error:</strong> {error} — Check that <code className="text-red-300">VITE_API_URL</code> is set in Vercel env and Railway CORS allows this domain.
+          </div>
+        )}
 
         {/* Table */}
         <LeadsTable

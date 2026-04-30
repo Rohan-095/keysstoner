@@ -1,7 +1,7 @@
 'use client';
-import { Phone, Sparkles, MessageCircle } from "lucide-react";
+import { Phone, Sparkles } from "lucide-react";
 import GlowBtn from "./ui/GlowBtn";
-import { PHONE_DISPLAY, PHONE_RAW, buildWA, WA_DEFAULT_MSG } from "../data/config";
+import { PHONE_DISPLAY, PHONE_RAW } from "../data/config";
 
 export default function FloatingButtons({ stickyIn, openQuote }) {
   return (
@@ -22,9 +22,6 @@ export default function FloatingButtons({ stickyIn, openQuote }) {
       </GlowBtn>
       <GlowBtn ghost href={`tel:${PHONE_RAW}`} style={{ flex:"1 1 auto", maxWidth:170, padding:"0.78rem 1rem", fontSize:"0.88rem", borderRadius:"0.78rem" }}>
         <Phone size={15}/><span className="sticky-label"> {PHONE_DISPLAY}</span>
-      </GlowBtn>
-      <GlowBtn wa href={buildWA(WA_DEFAULT_MSG)} target="_blank" rel="noopener noreferrer" style={{ flex:"1 1 auto", maxWidth:188, padding:"0.78rem 1rem", fontSize:"0.88rem", borderRadius:"0.78rem" }}>
-        <MessageCircle size={15}/><span className="sticky-label"> WhatsApp</span>
       </GlowBtn>
     </div>
   );

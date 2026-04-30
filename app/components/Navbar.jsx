@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from "react";
-import { Phone, Sparkles, Menu, X } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import GlowBtn from "./ui/GlowBtn";
 import T from "../data/tokens";
 import { PHONE_DISPLAY, PHONE_RAW } from "../data/config";
@@ -51,9 +51,11 @@ export default function Navbar({ openQuote }) {
       <div style={{ maxWidth:1300, margin:"0 auto", padding:"0 1.5rem", minHeight:"inherit", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"1rem" }}>
 
         <button onClick={() => scrollTo("hero")} style={{ display:"flex", alignItems:"center", gap:"0.75rem", background:"none", border:"none", cursor:"pointer", padding:0 }}>
-          <div style={{ width:44, height:44, borderRadius:"0.85rem", background:"linear-gradient(135deg,#1a3566,#0d1c3f)", border:"1px solid rgba(230,168,23,0.38)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 18px rgba(0,0,0,0.32)", flexShrink:0 }}>
-            <Sparkles size={19} style={{ color:T.gold }}/>
-          </div>
+          <img
+            src="/logo.png"
+            alt="Keystone Cleaner"
+            style={{ width:36, height:36, borderRadius:"0.72rem", flexShrink:0, display:"block" }}
+          />
           <div>
             <p style={{ margin:0, fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.06rem", color:"#fff", letterSpacing:"-0.022em" }}>Keystone Cleaner</p>
             <p style={{ margin:0, color:T.navyMuted, fontSize:"0.68rem", letterSpacing:"0.08em" }}>EXTERIOR CLEANING</p>

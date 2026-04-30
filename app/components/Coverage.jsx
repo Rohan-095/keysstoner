@@ -78,14 +78,14 @@ export default function Coverage() {
           <Reveal delay={85}>
             <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:"1.45rem", padding:"1.95rem", height:"100%" }}>
               <p style={{ margin:"0 0 0.42rem", fontSize:"0.74rem", textTransform:"uppercase", letterSpacing:"0.22em", color:T.gold, fontWeight:700 }}>Top Reviews</p>
-              <h3 style={{ margin:"0 0 1.38rem", color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.22rem" }}>Why homeowners choose KeystoneCleaner</h3>
+              <h3 style={{ margin:"0 0 1.38rem", color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.22rem" }}>Why homeowners choose Keystone Cleaner</h3>
               <div style={{ display:"flex", flexDirection:"column", gap:"0.92rem" }}>
                 {reviews.slice(0, 3).map((r, i) => (
                   <div key={i} style={{ background:"rgba(255,255,255,0.05)", borderRadius:"1rem", padding:"1.08rem", border:"1px solid rgba(255,255,255,0.07)" }}>
                     <div style={{ display:"flex", gap:2, marginBottom:"0.44rem" }}>
                       {Array.from({ length: r.stars }).map((_, idx) => <Star key={idx} size={12} style={{ color:T.gold, fill:T.gold }}/>)}
                     </div>
-                    <p style={{ margin:"0 0 0.6rem", color:"rgba(255,255,255,0.72)", lineHeight:1.66, fontSize:"0.87rem" }}>"{r.text}"</p>
+                    <p style={{ margin:"0 0 0.6rem", color:"rgba(255,255,255,0.72)", lineHeight:1.66, fontSize:"0.87rem" }}>&quot;{r.text}&quot;</p>
                     <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"0.4rem" }}>
                       <p style={{ margin:0, color:"#fff", fontWeight:700, fontSize:"0.83rem" }}>
                         {r.name} <span style={{ fontWeight:400, color:T.navyMuted }}>— {r.location}</span>

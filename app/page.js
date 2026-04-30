@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import T from "./data/tokens";
 import useScrollY from "./hooks/useScrollY";
 
@@ -14,25 +14,26 @@ import WhyUs           from "./components/WhyUs";
 import Coverage        from "./components/Coverage";
 import Reviews         from "./components/Reviews";
 import FAQ             from "./components/FAQ";
-import CTABanner       from "./components/CTABanner";
+import CTABanner        from "./components/CTABanner";
+import InstantEstimate from "./components/InstantEstimate";
 import ContactSection  from "./components/ContactSection";
 import Footer          from "./components/Footer";
-import FloatingButtons from "./components/FloatingButtons";
-import QuoteModal      from "./components/QuoteModal";
-import ServiceModal    from "./components/ServiceModal";
+import FloatingButtons  from "./components/FloatingButtons";
+import ChatWidget       from "./components/ChatWidget";
+import ServiceSections  from "./components/ServiceSections";
+import QuoteModal       from "./components/QuoteModal";
+import ServiceModal     from "./components/ServiceModal";
 
 export default function HomePage() {
   const [quoteOpen,    setQuoteOpen]    = useState(false);
   const [quotePrefill, setQuotePrefill] = useState("");
   const [selSvc,       setSelSvc]       = useState(null);
   const [svcOpen,      setSvcOpen]      = useState(false);
-  const [stickyIn,     setStickyIn]     = useState(false);
   const scrollY = useScrollY();
+  const stickyIn = scrollY > 520;
 
   const openQuote   = (pre = "") => { setQuotePrefill(pre); setQuoteOpen(true); };
   const openService = (s)         => { setSelSvc(s); setSvcOpen(true); };
-
-  useEffect(() => { setStickyIn(scrollY > 520); }, [scrollY]);
 
   return (
     <div style={{ minHeight:"100svh", background:T.navyDeep, color:"#fff", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
@@ -57,6 +58,7 @@ export default function HomePage() {
         @keyframes marquee    { from{transform:translateX(0);}to{transform:translateX(-50%);} }
         @keyframes pulseDot   { 0%,100%{box-shadow:0 0 0 0 rgba(230,168,23,0.6);}70%{box-shadow:0 0 0 9px rgba(230,168,23,0);} }
         @keyframes pulseWA    { 0%,100%{box-shadow:0 8px 32px rgba(37,211,102,0.5);}50%{box-shadow:0 8px 32px rgba(37,211,102,0.5),0 0 0 12px rgba(37,211,102,0);} }
+        @keyframes pulseGold  { 0%,100%{box-shadow:0 8px 32px rgba(230,168,23,0.5);}50%{box-shadow:0 8px 32px rgba(230,168,23,0.5),0 0 0 12px rgba(230,168,23,0);} }
         @keyframes floatY     { 0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);} }
         @keyframes kenBurns   { from{transform:scale(1.04);}to{transform:scale(1.12);} }
         @keyframes heroTextIn { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;} }
@@ -137,18 +139,23 @@ export default function HomePage() {
 
       <Marquee/>
       <Services openQuote={openQuote} onOpenService={openService}/>
+      <ServiceSections openQuote={openQuote}/>
       <Results openQuote={openQuote}/>
       <WhyUs openQuote={openQuote}/>
       <Coverage/>
       <Reviews/>
       <FAQ openQuote={openQuote}/>
       <CTABanner openQuote={openQuote}/>
+      <InstantEstimate openQuote={openQuote}/>
       <ContactSection/>
       <Footer openQuote={openQuote} openService={openService}/>
+      {/* Spacer so the sticky bar never covers the footer copyright */}
+      <div style={{ height: stickyIn ? 76 : 0, transition:"height .48s cubic-bezier(.22,.68,0,1.2)", background:"rgba(3,8,20,0.99)" }}/>
 
       <FloatingButtons stickyIn={stickyIn} openQuote={openQuote}/>
+      <ChatWidget stickyIn={stickyIn}/>
 
-      <QuoteModal   open={quoteOpen} onClose={() => setQuoteOpen(false)} prefill={quotePrefill}/>
+      <QuoteModal   key={`${quoteOpen}-${quotePrefill}`} open={quoteOpen} onClose={() => setQuoteOpen(false)} prefill={quotePrefill}/>
       <ServiceModal service={selSvc} open={svcOpen}  onClose={() => setSvcOpen(false)} onQuote={openQuote}/>
     </div>
   );

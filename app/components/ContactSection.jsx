@@ -1,12 +1,12 @@
 'use client';
 import { useState } from "react";
-import { Phone, Clock3, MapPin, Check, Send, Loader2, AlertCircle } from "lucide-react";
+import { Phone, Clock3, MapPin, Mail, Check, Send, Loader2, AlertCircle } from "lucide-react";
 import Reveal from "./ui/Reveal";
 import BgOrbs from "./ui/BgOrbs";
 import GlowBtn from "./ui/GlowBtn";
 import T from "../data/tokens";
 import { fld, selStyle, focusGold, blurGold } from "./ui/formStyles";
-import { PHONE_DISPLAY, PHONE_RAW } from "../data/config";
+import { PHONE_DISPLAY, PHONE_RAW, BUSINESS_EMAIL, BUSINESS_ADDRESS } from "../data/config";
 import services from "../data/services";
 import coverage from "../data/coverage";
 
@@ -45,9 +45,9 @@ function ContactForm() {
   if (status === "success") return (
     <div style={{ background:"rgba(22,163,74,0.08)", border:"1px solid rgba(22,163,74,0.22)", borderRadius:"1.3rem", padding:"2.5rem", textAlign:"center" }}>
       <Check size={36} style={{ color:"#4ade80", marginBottom:"0.75rem" }}/>
-      <h4 style={{ margin:"0 0 0.5rem", color:"#fff", fontWeight:800, fontSize:"1.1rem" }}>Request received!</h4>
+      <h4 style={{ margin:"0 0 0.5rem", color:"#fff", fontWeight:800, fontSize:"1.1rem" }}>Thank you!</h4>
       <p style={{ margin:0, color:T.navyMuted, fontSize:"0.9rem", lineHeight:1.7 }}>
-        Thanks, we received your request. Our team will contact you shortly.
+        We&apos;ll contact you within 24 hours.
       </p>
     </div>
   );
@@ -74,7 +74,7 @@ function ContactForm() {
 
       {status === "error" && (
         <p style={{ margin:0, color:"#f87171", fontSize:"0.82rem", display:"flex", alignItems:"center", gap:6 }}>
-          <AlertCircle size={13}/> Something went wrong — please try again.
+          <AlertCircle size={13}/> Something went wrong. Please call us directly.
         </p>
       )}
 
@@ -89,9 +89,10 @@ function ContactForm() {
 }
 
 const contactInfo = [
-  { icon:Phone,  label:"Phone",        value:PHONE_DISPLAY, href:`tel:${PHONE_RAW}` },
+  { icon:Phone,  label:"Phone",         value:PHONE_DISPLAY,  href:`tel:${PHONE_RAW}` },
+  { icon:Mail,   label:"Email",         value:BUSINESS_EMAIL, href:`mailto:${BUSINESS_EMAIL}` },
   { icon:Clock3, label:"Response Time", value:"Same day to 24 hours" },
-  { icon:MapPin, label:"Coverage Area", value:"Vancouver & Lower Mainland" },
+  { icon:MapPin, label:"Address",        value:BUSINESS_ADDRESS },
 ];
 
 export default function ContactSection() {

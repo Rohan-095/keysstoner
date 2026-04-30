@@ -19,7 +19,6 @@ function ServiceCard({ svc, onOpen, delay = 0 }) {
         <div style={{ height:198, overflow:"hidden", position:"relative" }}>
           <img src={svc.image} alt={svc.title} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", transform: hov ? "scale(1.09)" : "scale(1.01)", transition:"transform .55s cubic-bezier(.22,.68,0,1.2)" }}/>
           <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top,rgba(9,20,40,0.88) 0%,transparent 58%)" }}/>
-          <span style={{ position:"absolute", left:13, bottom:13, background:T.gradGold, color:T.navy, borderRadius:"999px", padding:"0.3rem 0.8rem", fontSize:"0.79rem", fontWeight:800, boxShadow:"0 4px 14px rgba(230,168,23,0.35)" }}>{svc.price}</span>
         </div>
         <div style={{ padding:"1.28rem", flex:1, display:"flex", flexDirection:"column" }}>
           <div style={{ display:"flex", alignItems:"center", gap:"0.65rem", marginBottom:"0.75rem" }}>
@@ -48,7 +47,7 @@ export default function Services({ onOpenService }) {
           <div style={{ textAlign:"center", marginBottom:"3.4rem" }}>
             <p style={{ margin:"0 0 0.55rem", fontSize:"0.74rem", textTransform:"uppercase", letterSpacing:"0.22em", color:T.gold, fontWeight:700 }}>Our Services</p>
             <h2 style={{ margin:"0 0 0.82rem", fontFamily:"'Bricolage Grotesque',sans-serif", color:"#fff", fontWeight:800, fontSize:"clamp(2rem,3.8vw,3rem)", letterSpacing:"-0.028em" }}>Everything your exterior needs</h2>
-            <p style={{ margin:"0 auto", color:T.navyMuted, maxWidth:520, lineHeight:1.76 }}>Click any service to see what's included, starting price and how to get booked.</p>
+            <p style={{ margin:"0 auto", color:T.navyMuted, maxWidth:520, lineHeight:1.76 }}>Click any service to see what&apos;s included, starting price and how to get booked.</p>
           </div>
         </Reveal>
         <div className="svc-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"1.3rem" }}>

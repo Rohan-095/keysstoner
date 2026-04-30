@@ -36,7 +36,7 @@ export default function Results({ openQuote }) {
           <div style={{ textAlign:"center", marginBottom:"3.2rem" }}>
             <p style={{ margin:"0 0 0.55rem", fontSize:"0.74rem", textTransform:"uppercase", letterSpacing:"0.22em", color:T.gold, fontWeight:700 }}>Real Work</p>
             <h2 style={{ margin:"0 0 0.82rem", fontFamily:"'Bricolage Grotesque',sans-serif", color:"#fff", fontWeight:800, fontSize:"clamp(2rem,3.8vw,3rem)", letterSpacing:"-0.028em" }}>Results that speak for themselves</h2>
-            <p style={{ margin:"0 auto", color:T.navyMuted, maxWidth:520, lineHeight:1.76 }}>Every job is treated with care and attention to detail — here's what that looks like on site.</p>
+            <p style={{ margin:"0 auto", color:T.navyMuted, maxWidth:520, lineHeight:1.76 }}>Every job is treated with care and attention to detail — here&apos;s what that looks like on site.</p>
           </div>
         </Reveal>
         <div className="results-grid" style={{ display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:"1.2rem" }}>

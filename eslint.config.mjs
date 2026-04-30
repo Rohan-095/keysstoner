@@ -10,6 +10,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Built frontend assets — not source, not lintable
+    "frontend/dist/**",
   ]),
 ]);
 

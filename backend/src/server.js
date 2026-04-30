@@ -15,6 +15,8 @@ app.use(cors({
   origin: (origin, cb) => {
     const allowed = [
       process.env.FRONTEND_URL,
+      "https://www.keystonecleaner.com",
+      "https://keystonecleaner.com",
       "https://keysstoner.vercel.app",
       "https://keysstoner-git-main-rohan-095s-projects.vercel.app",
       "http://localhost:5173",

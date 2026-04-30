@@ -45,9 +45,9 @@ export default function LeadCaptureForm({ prefill = "", onSuccess }) {
   if (status === "success") return (
     <div style={{ background:"rgba(22,163,74,0.08)", border:"1px solid rgba(22,163,74,0.22)", borderRadius:"1.3rem", padding:"2.5rem", textAlign:"center" }}>
       <Check size={36} style={{ color:"#4ade80", marginBottom:"0.75rem" }}/>
-      <h4 style={{ margin:"0 0 0.35rem", color:"#fff", fontWeight:800, fontSize:"1.1rem" }}>Request received!</h4>
+      <h4 style={{ margin:"0 0 0.35rem", color:"#fff", fontWeight:800, fontSize:"1.1rem" }}>Thank you!</h4>
       <p style={{ margin:"0 0 1.2rem", color:T.navyMuted, fontSize:"0.9rem", lineHeight:1.7 }}>
-        Thanks, we received your request. Our team will contact you shortly.
+        We&apos;ll contact you within 24 hours.
       </p>
       <GlowBtn gold onClick={() => setStatus("idle")} style={{ fontSize:"0.88rem", padding:"0.68rem 1.2rem" }}>
         Submit another
@@ -90,7 +90,7 @@ export default function LeadCaptureForm({ prefill = "", onSuccess }) {
 
       {status === "error" && (
         <p style={{ margin:0, color:"#f87171", fontSize:"0.82rem", display:"flex", alignItems:"center", gap:6 }}>
-          <AlertCircle size={13}/> Something went wrong — try again or message us on WhatsApp.
+          <AlertCircle size={13}/> Something went wrong. Please call us directly.
         </p>
       )}
 
@@ -107,8 +107,8 @@ export default function LeadCaptureForm({ prefill = "", onSuccess }) {
       )}
 
       <p style={{ margin:0, textAlign:"center", fontSize:"0.75rem", color:T.navyMuted }}>
-        We'll call you within minutes. You can also{" "}
-        <a href={buildWA("Hi KeystoneCleaner, I'd like to get a free quote")} target="_blank" rel="noopener noreferrer" style={{ color:T.gold, fontWeight:600 }}>
+        We&apos;ll call you within minutes. You can also{" "}
+        <a href={buildWA("Hi Keystone Cleaner, I'd like to get a free quote")} target="_blank" rel="noopener noreferrer" style={{ color:T.gold, fontWeight:600 }}>
           message us on WhatsApp
         </a>.
       </p>

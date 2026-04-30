@@ -25,7 +25,7 @@ function ReviewCard({ r, delay = 0 }) {
         <div style={{ display:"flex", gap:2, marginBottom:"0.75rem" }}>
           {Array.from({ length: r.stars }).map((_, i) => <Star key={i} size={13} style={{ color:T.gold, fill:T.gold }}/>)}
         </div>
-        <p style={{ margin:"0 0 1rem", color:"rgba(255,255,255,0.7)", lineHeight:1.74, fontSize:"0.92rem" }}>"{r.text}"</p>
+        <p style={{ margin:"0 0 1rem", color:"rgba(255,255,255,0.7)", lineHeight:1.74, fontSize:"0.92rem" }}>&quot;{r.text}&quot;</p>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"0.5rem" }}>
           <p style={{ margin:0, fontWeight:700, fontSize:"0.84rem", color:"#fff" }}>
             {r.name} <span style={{ fontWeight:400, color:T.navyMuted }}>— {r.location}</span>

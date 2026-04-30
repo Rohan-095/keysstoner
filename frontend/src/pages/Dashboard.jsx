@@ -33,8 +33,15 @@ export default function Dashboard({ onLogout }) {
     }
   }, [status, search]);
 
-  // Initial load + re-fetch on filter change
-  useEffect(() => { fetchAll(); }, [fetchAll]);
+  // Initial load + re-fetch on filter change (setState called inside .then/.catch, not synchronously)
+  useEffect(() => {
+    Promise.all([
+      api.getStats(),
+      api.getLeads({ status: status === "all" ? undefined : status, search: search || undefined }),
+    ]).then(([s, l]) => {
+      setStats(s); setLeads(l); setLastRefresh(new Date()); setLoading(false);
+    }).catch(e => { console.error("Fetch error:", e); setLoading(false); });
+  }, [status, search]);
 
   // 30-second poll
   useEffect(() => {

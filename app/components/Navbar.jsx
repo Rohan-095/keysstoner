@@ -55,7 +55,7 @@ export default function Navbar({ openQuote }) {
             <Sparkles size={19} style={{ color:T.gold }}/>
           </div>
           <div>
-            <p style={{ margin:0, fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.06rem", color:"#fff", letterSpacing:"-0.022em" }}>KeystoneCleaner</p>
+            <p style={{ margin:0, fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.06rem", color:"#fff", letterSpacing:"-0.022em" }}>Keystone Cleaner</p>
             <p style={{ margin:0, color:T.navyMuted, fontSize:"0.68rem", letterSpacing:"0.08em" }}>EXTERIOR CLEANING</p>
           </div>
         </button>

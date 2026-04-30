@@ -1,10 +1,12 @@
 'use client';
-import { Sparkles } from "lucide-react";
+import { Sparkles, Mail, MapPin, Phone } from "lucide-react";
 import GlowBtn from "./ui/GlowBtn";
 import T from "../data/tokens";
-import { PHONE_DISPLAY, PHONE_RAW } from "../data/config";
+import { PHONE_DISPLAY, PHONE_RAW, BUSINESS_EMAIL, BUSINESS_EMAIL_ADMIN, BUSINESS_EMAIL_SUPPORT, BUSINESS_ADDRESS } from "../data/config";
 import services from "../data/services";
 import coverage from "../data/coverage";
+
+const emails = [BUSINESS_EMAIL, BUSINESS_EMAIL_ADMIN, BUSINESS_EMAIL_SUPPORT];
 
 export default function Footer({ openQuote, openService }) {
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior:"smooth", block:"start" });
@@ -18,12 +20,30 @@ export default function Footer({ openQuote, openService }) {
             <div style={{ width:42, height:42, borderRadius:"0.75rem", background:"rgba(255,255,255,0.06)", border:"1px solid rgba(230,168,23,0.26)", display:"flex", alignItems:"center", justifyContent:"center" }}>
               <Sparkles size={17} style={{ color:T.gold }}/>
             </div>
-            <span style={{ color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.04rem", letterSpacing:"-0.022em" }}>KeystoneCleaner</span>
+            <span style={{ color:"#fff", fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:800, fontSize:"1.04rem", letterSpacing:"-0.022em" }}>Keystone Cleaner</span>
           </div>
-          <p style={{ margin:"0 0 1.12rem", lineHeight:1.75, maxWidth:265, fontSize:"0.87rem" }}>
-            Professional exterior cleaning across Vancouver and the Lower Mainland.
+          <p style={{ margin:"0 0 1rem", lineHeight:1.75, maxWidth:265, fontSize:"0.87rem" }}>
+            Professional exterior cleaning across Vancouver, the Lower Mainland &amp; Islands.
           </p>
-          <a href={`tel:${PHONE_RAW}`} style={{ color:T.gold, fontWeight:700, fontSize:"0.9rem" }}>{PHONE_DISPLAY}</a>
+
+          <a href={`tel:${PHONE_RAW}`} style={{ color:T.gold, fontWeight:700, fontSize:"0.88rem", display:"flex", alignItems:"center", gap:"0.38rem", marginBottom:"0.65rem" }}>
+            <Phone size={13} style={{ color:T.gold, flexShrink:0 }}/> {PHONE_DISPLAY}
+          </a>
+
+          <div style={{ display:"flex", flexDirection:"column", gap:"0.3rem", marginBottom:"0.65rem" }}>
+            {emails.map(email => (
+              <a key={email} href={`mailto:${email}`} style={{ color:"rgba(255,255,255,0.46)", fontSize:"0.82rem", display:"flex", alignItems:"center", gap:"0.38rem", transition:"color .18s" }}
+                onMouseEnter={e => e.currentTarget.style.color = T.gold}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.46)"}
+              >
+                <Mail size={12} style={{ color:T.gold, flexShrink:0 }}/> {email}
+              </a>
+            ))}
+          </div>
+
+          <p style={{ margin:0, fontSize:"0.82rem", lineHeight:1.55, display:"flex", alignItems:"flex-start", gap:"0.4rem" }}>
+            <MapPin size={13} style={{ color:T.gold, flexShrink:0, marginTop:2 }}/>{BUSINESS_ADDRESS}
+          </p>
         </div>
 
         <div>
@@ -53,7 +73,7 @@ export default function Footer({ openQuote, openService }) {
       </div>
 
       <div style={{ borderTop:"1px solid rgba(255,255,255,0.07)", maxWidth:1300, margin:"0 auto", padding:"1.3rem 1.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"0.8rem" }}>
-        <p style={{ margin:0, fontSize:"0.78rem" }}>© 2025 KeystoneCleaner. All rights reserved.</p>
+        <p style={{ margin:0, fontSize:"0.78rem" }}>© 2026 Keystone Cleaner. All rights reserved.</p>
         <GlowBtn gold onClick={() => openQuote()} style={{ padding:"0.62rem 1.18rem", fontSize:"0.85rem", borderRadius:"0.7rem" }}>Get Free Quote</GlowBtn>
       </div>
     </footer>

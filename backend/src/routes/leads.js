@@ -1,6 +1,7 @@
 const express  = require("express");
 const supabase  = require("../supabase");
 const { createCall, getProvider } = require("../voiceService");
+const { sendLeadNotification }    = require("../emailService");
 
 const router = express.Router();
 
@@ -53,6 +54,9 @@ router.post("/", async (req, res) => {
 
   // Respond immediately so the website form doesn't hang
   res.status(201).json({ success: true, leadId: lead.id });
+
+  // Send email notification (non-blocking)
+  sendLeadNotification(lead).catch(err => console.error("[email] Failed to send notification:", err.message));
 
   // 2. If no AI provider is configured, stop here
   if (!provider) {

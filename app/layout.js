@@ -30,11 +30,6 @@ export const metadata = {
     title: "Keystone Cleaner | Exterior Cleaning Vancouver & Lower Mainland",
     description: "Professional roof cleaning, pressure washing & exterior cleaning across Vancouver & the Lower Mainland. Free quotes — fast response.",
   },
-  icons: {
-    icon:     "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple:    "/apple-touch-icon.png",
-  },
 };
 
 const jsonLd = {
